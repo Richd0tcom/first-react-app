@@ -1,43 +1,55 @@
 import Board from "./components/Board";
 import Hex from "./components/Hex";
 import Switch from "./components/Switch";
-import { useState } from 'react';
+import Clear from "./components/Clear";
+import History from "./components/History";
+import { useState, useEffect } from 'react';
 
 
 function App() {
 
-  const [ color, setColor] = useState('#ff3362');
+
+  const [ history, setHistory] = useState(JSON.parse(localStorage.getItem('colorHistory')) || ['#ff3362']);
+  const [ color, setColor] = useState(history[0] || '#ff3362');
+  
   
   const changeColor = ()=>{
 
-    let hx = (Math.random() * 0xfffff * 100000).toString(16).slice(0,6);
-    setColor(
-      `#${hx}`
-    )
+    let currentColor = `#${(Math.random() * 0xfffff * 100000).toString(16).slice(0,6)}`;
+    setColor(currentColor);
+
+    setHistory([currentColor, ...history].slice(0,6));
+
   };
+
+
+  useEffect(()=>{
+    localStorage.setItem('colorHistory', JSON.stringify(history))
+    
+  },[history])
+
+  const clearHistory = ()=>{
+    let temp = history[0];
+    setHistory([temp])
+    
+  };
+
   return (
-    <main className="pt-12 md:pt-32 h-screen flex flex-col items-center">
-      <Hex code={color}/>
-      <Board color={color}/>
-      <Switch onSwitch = {changeColor}/>
+    <main className="h-screen flex">
+      <div className="basis-3/4 p-20">
+        <Hex code={color}/>
+        <Board color={color}/>
+        <Switch onSwitch = {changeColor}/>
+      </div>
+      <div className="px-5 py-20 basis-1/2 md:px-10 lg:basis-1/4 xl:p-20">
+        <Hex code={color}/>
+        <History history={history}/>
+        <Clear onClear={clearHistory}/>
+      </div>
+      
     </main>
   );
 }
 
 export default App;
 
-
-/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */

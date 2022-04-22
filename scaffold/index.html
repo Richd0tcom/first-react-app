@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Colur switch Board</title>
+    <style>
+        *{
+            outline:1px solid red;
+        }
+    </style>
+</head>
+<body class="">
+    <main class="h-screen flex">
+        <div class="basis-3/4 p-20">
+            <div class="hex ">
+                <h1 class="py-3 md:py-7 text-center text-xl font-bold" id="code">
+                    #FF3362
+                </h1>
+                <!--colour code-->
+            </div>
+            <div class="board  p-12">
+                <div class="rounded-md h-[50vh]" id="board"></div>
+                <!-- background colour-->
+            </div>
+            <div class="switch flex justify-center py-5">
+                <button class="rounded-md py-3 px-7 md:px-20" id="switch">
+                    Switch
+                </button>
+            </div>
+        </div>
+        <div class="px-5 py-20 basis-1/2 md:px-10 lg:basis-1/4 xlp-20">
+            <div class="">
+                <h1 class="py-3 md:py-7 text-center text-xl font-bold" id="">
+                    #FF3362
+                </h1>
+                <!--colour code-->
+            </div>
+            <div class="board  p-12">
+                <div class="rounded-md h-[50vh]" id="list">
+                    
+                </div>
+                
+            </div>
+            <div class="switch  flex justify-center py-5">
+                <button class="rounded-md py-3 px-7 md:px-12" id="clear">
+                    clear
+                </button>
+            </div>
+        </div>
+        
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
