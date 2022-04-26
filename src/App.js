@@ -18,7 +18,7 @@ function App() {
     let currentColor = `#${(Math.random() * 0xfffff * 100000).toString(16).slice(0,6)}`;
     setColor(currentColor);
 
-    setHistory([currentColor, ...history].slice(0,6));
+    setHistory([currentColor, ...history].slice(0,11));
 
   };
 
